@@ -46,7 +46,9 @@ const store = createStore({
     async addProduct({ dispatch }, product) {
         const formData = new FormData();
         formData.append('name', product.name);
-        formData.append('image', product.image);
+        if (product.image) {
+          formData.append('image', product.image);
+        }
         formData.append('description', product.description);
         formData.append('price', product.price);
         formData.append('category_id', product.category_id);

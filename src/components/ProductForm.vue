@@ -3,7 +3,7 @@
       <h2>Agregar Producto</h2>
       <form @submit.prevent="submitProduct">
         <input v-model="product.name" placeholder="Nombre" required />
-        <input type="file" @change="handleFileUpload" required/>
+        <input type="file" @change="handleFileUpload" />
         <input v-model="product.description" placeholder="Descripción" required />
         <input type="number" v-model.number="product.price" placeholder="Precio" required />
         <select v-model="product.category_id" required>
