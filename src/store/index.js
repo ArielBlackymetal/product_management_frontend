@@ -42,7 +42,20 @@ const store = createStore({
       };
       const response = await axios.get('/api/products', { params });
       commit('setProducts', { products: response.data.data, total: response.data.meta.total });
-    }
+    },
+    async addProduct({ dispatch }, product) {
+        const formData = new FormData();
+        formData.append('name', product.name);
+        formData.append('image', product.image);
+        formData.append('description', product.description);
+        formData.append('price', product.price);
+        formData.append('category_id', product.category_id);
+      
+        await axios.post('/api/products', formData, {
+          headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        dispatch('fetchProducts');
+      }
   }
 });
 
